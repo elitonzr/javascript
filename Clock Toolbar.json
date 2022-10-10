@@ -1,0 +1,43 @@
+[
+    {
+        "id": "b97bc1c0.cb899",
+        "type": "ui_template",
+        "z": "53dcfb23.bdc434",
+        "group": "c982fbb8.1deb38",
+        "name": "Clock Toolbar",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "format": "<style>\n.md-toolbar-tools {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    box-sizing: border-box;\n    font-size: 20px;\n    font-weight: 400;\n    height: 32px;\n    letter-spacing: .005em;\n    margin: 0;\n    max-height: 64px;\n    padding: 0 16px;\n    width: 100%;\n}\n#divclock{\n    align-items: center;\n    width: 80%;\n}\n.md-toolbar-tools p{\n    align-items: center;\n    text-align:center;\n    width: 100%;\n    color: white;\n    font-size: 20px;\n}\n</style>\n\n<script id=\"titleScript\" type=\"text/javascript\">\n\n$(function() {\n    if($('.md-toolbar-tools').length != 0){\n        loadClock();\n    }else setTimeout(loadClock, 500)\n});\n\nfunction loadClock(){\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n\n    div.append(p);\n    div[0].id=\"divclock\"\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n        //p.text(d.toLocaleString());\n        p.text(data());\n    }\n\n    if(document.clockInterval){ \n            clearInterval(document.clockInterval);\n            document.clockInterval = null;\n    }\n        \n    document.clockInterval = setInterval(upTime,1000);\n}\n\nfunction data() {\n    let data = new Date().toDateString();\n    let hora = new Date().toLocaleTimeString();\n    data = data.split(' ');\n    let semana = data[0];\n    let dia = data[2];\n    let mes = data[1];\n    let ano = data[3];\n\n    switch (semana) {\n        case 'Sun':\n            semana = semana.replace('Sun', 'domingo');\n            break;\n        case 'Mon':\n            semana = semana.replace('Mon', 'segunda-feira');\n            break;\n        case 'Tue':\n            semana = semana.replace('Tue', 'terça-feira');\n            break;\n        case 'Wed':\n            semana = semana.replace('Wed', 'quarta-feira');\n            break;\n        case 'Thu':\n            semana = semana.replace('Thu', 'quinta-feira');\n            break;\n        case 'Fri':\n            semana = semana.replace('Fri', 'sexta-feira');\n            break;\n        case 'Sat':\n            semana = semana.replace('Sat', 'sábado');\n            break;\n    }\n\n    switch (mes) {\n        case 'Jan':\n            mes = mes.replace('Jan', 'janeiro');\n            break;\n        case 'Feb':\n            mes = mes.replace('Feb', 'fevereiro');\n            break;\n        case 'Mar':\n            mes = mes.replace('Mar', 'março');\n            break;\n        case 'Apr':\n            mes = mes.replace('Apr', 'abril');\n            break;\n        case 'May':\n            mes = mes.replace('May', 'maio');\n            break;\n        case 'Jun':\n            mes = mes.replace('Jun', 'junho');\n            break;\n        case 'Jul':\n            mes = mes.replace('Jul', 'julho');\n            break;\n        case 'Aug':\n            mes = mes.replace('Aug', 'agosto');\n            break;\n        case 'Sep':\n            mes = mes.replace('Sep', 'setembro');\n            break;\n        case 'Oct':\n            mes = mes.replace('Oct', 'Outubro');\n            break;\n        case 'Nov':\n            mes = mes.replace('Nov', 'novembro');\n            break;\n        case 'Dec':\n            mes = mes.replace('Dec', 'dezembro');\n            break;\n    }\n\n    return (semana + ', ' + dia + ' de ' + mes + ' de ' + ano + ' ' + hora);\n}\n\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 320,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c982fbb8.1deb38",
+        "type": "ui_group",
+        "name": "hidden_group",
+        "tab": "1854ea3c.181436",
+        "order": 6,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1854ea3c.181436",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "fa-home",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
